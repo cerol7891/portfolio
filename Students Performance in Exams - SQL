@@ -1,0 +1,64 @@
+SELECT * FROM exams
+
+-- Gender Distribution
+select gender, count(gender) as "count" from exams
+group by gender 
+
+-- Race Distribution
+SELECT race, COUNT(race) AS "count" from Exams
+GROUP by race
+order by "count" DESC
+
+-- Parental level of education distribution
+SELECT "parental level of education", count("parental level of education") as "count" from Exams
+group by "parental level of education"
+order by "count" DESC 
+
+-- Lunch Distribution
+SELECT lunch, count("lunch") as "count" from Exams
+group by "lunch"
+order by "count" DESC
+
+-- Test prep course distribution
+SELECT "test prep course", count("test prep course") as "count" from Exams
+group by "test prep course"
+order by "count" DESC
+
+--  Average test scores with respect to gender. This is to see if gender has any effect on student success
+SELECT gender, AVG("math score") as "avg. math score", AVG("reading score") as "avg. reading score", AVG("writing score") as "avg. writing score",
+(AVG("math score") + AVG("reading score") + AVG("writing score"))/3 As "overall average"
+from Exams
+group by gender
+order BY "overall average" DESC
+
+--  Average test scores with respect to race. This is to see if racial background has any effect on student success
+SELECT race, AVG("math score") as "avg. math score", AVG("reading score") as "avg. reading score", AVG("writing score") as "avg. writing score",
+(AVG("math score") + AVG("reading score") + AVG("writing score"))/3 As "overall average"
+from Exams
+group by race
+order BY "overall average" DESC
+
+--  Average test scores with respect to parental level of education. This is to see if parents' education level has any effect on student succes
+SELECT "parental level of education", AVG("math score") as "avg. math score", AVG("reading score") as "avg. reading score", AVG("writing score") as "avg. writing score",
+(AVG("math score") + AVG("reading score") + AVG("writing score"))/3 As "overall average"
+from Exams
+group by "parental level of education"
+order BY "overall average" DESC
+
+-- Average test scores with respect to free or paid lunch service. This is to see if students' financial status has any effect on student succes
+SELECT lunch, AVG("math score") as "avg. math score", AVG("reading score") as "avg. reading score", AVG("writing score") as "avg. writing score",
+(AVG("math score") + AVG("reading score") + AVG("writing score"))/3 As "overall average"
+from Exams
+group by lunch
+order BY "overall average" DESC
+
+-- Average test scores with respect to test prep course. This is to see completing a test prep course has any effect on student succes
+SELECT "test prep course", AVG("math score") as "avg. math score", AVG("reading score") as "avg. reading score", AVG("writing score") as "avg. writing score",
+(AVG("math score") + AVG("reading score") + AVG("writing score"))/3 As "overall average"
+from Exams
+group by "test prep course"
+order BY "overall average" DESC
+
+-- In conclusion, we see that the parents who have higher education background have a positive impact on their children's academic success. 
+Besides, we clearly see that student's financial wellbing has a positive impact on their success. 
+And last but not least, students who completed test prep course are academicly more successfull that those did not complate any course 
